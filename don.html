@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Xem đơn</title>
+</head>
+
+<body>
+    <h2>Chào mừng bạn!</h2>
+    <p>Bạn đã đăng nhập thành công.</p>
+    <button onclick="logout()">Đăng xuất</button>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAqkMIR3_NQr-TfJqeTlRN4h2FArE58_Q0",
+            authDomain: "donnghiphep-2.firebaseapp.com",
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if (!user) {
+                window.location.href = "index.html"; // Nếu chưa đăng nhập, chuyển về trang đăng nhập
+            }
+        });
+
+        function logout() {
+            firebase.auth().signOut().then(() => {
+                window.location.href = "index.html";
+            });
+        }
+    </script>
+</body>
+
+</html>
